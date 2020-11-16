@@ -1,4 +1,4 @@
-function [w] =(il, h2)
+function [w] =poziomy_aktywacji(il, h2)
 %funkcja wyznaczająca poziomy aktywacji poszczególnych reguł (= modeli lokalnych)
 
     %przedział
