@@ -63,6 +63,7 @@ for value=109:-18:37
                 w(r) = dsigmf(h2, [a c(r-1) a c(r)]);
             end
         end
+       ! Tutaj chyba jeszcze trzeba dać te obliczne wyjścia z wagami !
     end
 end
 
