@@ -1,11 +1,10 @@
-V1(1:5+1)=0.85*((73 + 18)/12)^4;
 clear all;
 il = 3;
 w = ones(1,il);
 
 %stałe z zadania
 alfa1 = 12; alfa2 = 10; C1 = 0.85; C2 = 0.9; tau = 40; T = 1;
-kk = 2000;
+kk = 10;
 
 
 ymax = 150;
@@ -50,8 +49,8 @@ w = ones(1,il);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-figure
-hold on 
+%figure
+%hold on 
 
 
 for value=109:-18:37
@@ -60,25 +59,25 @@ for value=109:-18:37
         for r = 1:il
             V0_1=V0_1r(il);
             V0_2=V0_2r(il);
+%             
+%             
+            V1(k) = V1(k-1) + T*(Flin(k-tau-1) + FD(k-1) - alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)));
+            V2(k) = V2(k-1) + T*(alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)) - alfa2*((V0_2/C2).^0.25 + (V2(k-1)-V0_2)/(4*C2*(V0_2/C2).^0.75)));
+            h2(k) = sqrt(V0_2/C2) + (V2(k)-V0_2)/(2*C2*sqrt(V0_2/C2));
             
-            
-            V1(kk) = V1(kk-1) + T*(Flin(kk-tau-1) + FD(k-1) - alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)));
-            V2(kk) = V2(kk-1) + T*(alfa1*((V0_1/C1).^0.25 + (V1(kk-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)) - alfa2*((V0_2/C2).^0.25 + (V2(kk-1)-V0_2)/(4*C2*(V0_2/C2).^0.75)));
-            h2(kk) = sqrt(V0_2/C2) + (V2(kk)-V0_2)/(2*C2*sqrt(V0_2/C2));
-            
-            %wagi
-            if r == 1
-                w(1) = sigmf(h2r0(il), [-a c(1)]);
-            elseif r == il
-                w(il) = sigmf(h2r0(il), [a c(il-1)]);
-            else
-                w(r) = dsigmf(h2r0(il), [a c(r-1) a c(r)]);
-            end
+%             %wagi
+%             if r == 1
+%                 w(1) = sigmf(h2r0(il), [-a c(1)]);
+%             elseif r == il
+%                 w(il) = sigmf(h2r0(il), [a c(il-1)]);
+%             else
+%                 w(r) = dsigmf(h2r0(il), [a c(r-1) a c(r)]);
+%             end
         end
-        %do rozbudowy
-%         V1 = w*V1;
-%          V2) = w*V2;
-    stairs(1:kk, h2(1:kk), '--');
+%         %do rozbudowy
+% %         V1 = w*V1;
+% %          V2) = w*V2;
+    %stairs(1:kk, h2(1:kk), '--');
 
     end
 end
