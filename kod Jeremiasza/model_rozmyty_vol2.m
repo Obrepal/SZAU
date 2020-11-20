@@ -5,7 +5,7 @@ w = ones(1,il);
 
 %stałe z zadania
 alfa1 = 12; alfa2 = 10; C1 = 0.85; C2 = 0.9; tau = 40; T = 1;
-kk = 200;
+kk = 2000;
 
 
 ymax = 150;
@@ -33,7 +33,7 @@ V1(1:kk)=ones(1,kk);
 V2(1:kk)=ones(1,kk);
 Flin(1:kk)= ones(1,kk);
 FD(1:kk)= ones(1,kk);
-
+h2(1:kk)= ones(1,kk);
 Flin(1:tau+1) = 73;
 FD(1:tau+1) = 18;
 V1(1:tau+1) = 0.85*((73 + 18)/12)^4;
@@ -62,9 +62,9 @@ for value=109:-18:37
             V0_2=V0_2r(il);
             
             
-            V1(k) = V1(k-1) + T*(Flin(k-tau-1) + FD(k-1) - alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)));
-            V2(k) = V2(k-1) + T*(alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)) - alfa2*((V0_2/C2).^0.25 + (V2(k-1)-V0_2)/(4*C2*(V0_2/C2).^0.75)));
-            h2(k) = sqrt(V0_2/C2) + (V2(k)-V0_2)/(2*C2*sqrt(V0_2/C2));
+            V1(kk) = V1(kk-1) + T*(Flin(kk-tau-1) + FD(k-1) - alfa1*((V0_1/C1).^0.25 + (V1(k-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)));
+            V2(kk) = V2(k-1) + T*(alfa1*((V0_1/C1).^0.25 + (V1(kk-1)-V0_1)/(4*C1*(V0_1/C1).^0.75)) - alfa2*((V0_2/C2).^0.25 + (V2(kk-1)-V0_2)/(4*C2*(V0_2/C2).^0.75)));
+            h2(kk) = sqrt(V0_2/C2) + (V2(kk)-V0_2)/(2*C2*sqrt(V0_2/C2));
             
             %wagi
             if r == 1
@@ -78,7 +78,7 @@ for value=109:-18:37
         %do rozbudowy
 %         V1 = w*V1;
 %          V2) = w*V2;
+    stairs(1:kk, h2(1:kk), '--');
+
     end
 end
-
-stairs(1:kk, h2(1:kk), '--');
