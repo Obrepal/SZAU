@@ -29,6 +29,11 @@ end
 %punkt pracy
 V0_1r = C1*[(alfa2/alfa1)^2*h2r0].^2; V0_2r = C2.*h2r0.*h2r0;
 
+V1(1:kk)=ones(1,kk);
+V2(1:kk)=ones(1,kk);
+Flin(1:kk)= ones(1,kk);
+FD(1:kk)= ones(1,kk);
+
 Flin(1:tau+1) = 73;
 FD(1:tau+1) = 18;
 V1(1:tau+1) = 0.85*((73 + 18)/12)^4;
@@ -39,7 +44,8 @@ V2(1:tau+1) = 0.85*((73 + 18)/12)^4*0.9/0.85*(12/10)^4;
 
 
 
-w = ones(il);
+
+w = ones(1,il);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,8 +77,8 @@ for value=109:-18:37
             end
         end
         %do rozbudowy
-        V1) = w*V1;
-         V2) = w*V2;
+        V1 = w*V1;
+        V2 = w*V2;
     end
 end
 
