@@ -4,7 +4,7 @@ w = ones(1,il);
 
 %stałe z zadania
 alfa1 = 12; alfa2 = 10; C1 = 0.85; C2 = 0.9; tau = 40; T = 1;
-kk = 10;
+kk = 1000;
 
 
 ymax = 150;
@@ -49,8 +49,8 @@ w = ones(1,il);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%figure
-%hold on 
+figure
+hold on 
 
 
 for value=109:-18:37
@@ -74,10 +74,12 @@ for value=109:-18:37
 %                 w(r) = dsigmf(h2r0(il), [a c(r-1) a c(r)]);
 %             end
         end
+
 %         %do rozbudowy
 % %         V1 = w*V1;
 % %          V2) = w*V2;
-    %stairs(1:kk, h2(1:kk), '--');
 
     end
+            stairs(1:kk, h2(1:kk), '--');
+
 end
