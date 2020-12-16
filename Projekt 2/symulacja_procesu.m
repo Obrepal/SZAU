@@ -1,6 +1,6 @@
 clear all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dane = 1; %0 - dane uczące, 1 - dane weryfikujące
+dane = 0; %0 - dane uczące, 1 - dane weryfikujące
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 alfa1 = -1.262719; alfa2 = 0.329193;
@@ -43,8 +43,10 @@ xlabel('k');
 %zapisanie danych do pliku
 if dane==0
     plik = fopen('dane.txt', 'w');
+    save('dane_uczace');
 else
     plik = fopen('danewer.txt', 'w');
+    save('dane_weryfikujace');
 end
 for k=1:kk
     fprintf(plik, '%2.12e ', u(k));
