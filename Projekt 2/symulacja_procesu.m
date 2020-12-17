@@ -14,7 +14,7 @@ x1(1:9) = 0; x2(1:9) = 0;
 %sekwencja skokowych zmian sygnału sterującego
 rand('seed', dane+15);
 for i=1:40:kk
-    u(i:i+39) = (rand(1,1)-0.5)*2;
+    u(i:i+39) = (rand(1,1)-0.5)*1.6;
 end
 
 %symulacja procesu
@@ -29,13 +29,14 @@ figure;
 subplot(2, 1, 1);
 stairs(u(1:kk), 'b'); %wejście u
 grid on;
+ylim([-1 1])
 ylabel('u');
 xlabel('k');
 
 subplot(2,1,2);
 stairs(y, 'Color', [0.3010 0.7450 0.9330]); %wyjście y
 hold on;
-stairs(y, 'r.', 'MarkerSize', 10); %wyjście y
+plot(y, 'r.', 'MarkerSize', 7); %próbki
 grid on;
 ylabel('y');
 xlabel('k');

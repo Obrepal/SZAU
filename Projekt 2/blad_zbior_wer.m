@@ -6,7 +6,7 @@ load('dane_weryfikujace', 'y', 'u')
 
 E_oe = 0;
 y_mod(1:4) = y(1:4);
-for k=5:2000
+for k=5:length(y)
     q = [u(k-3) u(k-4) y_mod(k-1) y_mod(k-2)]';
     y_mod(k) = w20 + w2*tanh(w10+w1*q);
     E_oe = E_oe + (y_mod(k)-y(k))^2; 
@@ -16,8 +16,9 @@ E_oe
 % %generacja wykresów
 % figure;
 % subplot(2, 1, 1);
-% stairs(u(1:2000), 'b'); %wejście u
+% stairs(u, 'b'); %wejście u
 % grid on;
+% ylim([-1 1])
 % ylabel('u');
 % xlabel('k');
 % 
